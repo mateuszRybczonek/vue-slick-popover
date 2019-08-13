@@ -1,30 +1,83 @@
 {
   "name": "vue-slick-popover",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.3",
+  "description": "Popover component for Vue.js apps",
+  "author": "Mateusz Rybczonek <m.rybczonek@gmail.com>",
+  "main": "dist/vue-slick-popover.common.js",
+  "module": "dist/vue-slick-popover.esm.js",
+  "browser": "dist/vue-slick-popover.js",
+  "unpkg": "dist/vue-slick-popover.js",
+  "style": "dist/vue-slick-popover.css",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "build": "NODE_ENV=production rollup -c",
+    "watch": "NODE_ENV=dev rollup -c -w",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint --ext .js,.vue src",
+    "lint:js:fix": "npm run lint:js --fix",
+    "lint:css": "stylelint src/**/*.{vue,css}",
+    "pretest": "npm run lint",
+    "prepare": "npm run build",
+    "docs:dev": "vuepress dev",
+    "docs:build": "vuepress build"
   },
   "dependencies": {
-    "core-js": "^2.6.5",
-    "vue": "^2.6.10"
+    "popper.js": "^1.15.0",
+    "velocity-animate": "^1.5.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.10.0",
-    "@vue/cli-plugin-e2e-cypress": "^3.10.0",
-    "@vue/cli-plugin-eslint": "^3.10.0",
-    "@vue/cli-plugin-unit-mocha": "^3.10.0",
-    "@vue/cli-service": "^3.10.0",
-    "@vue/eslint-config-standard": "^4.0.0",
-    "@vue/test-utils": "1.0.0-beta.29",
-    "babel-eslint": "^10.0.1",
-    "chai": "^4.1.2",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.6.10"
-  }
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.2",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^6.1.0",
+    "eslint-config-standard": ">=13.0.1",
+    "eslint-plugin-import": ">=2.18.2",
+    "eslint-plugin-vue": "^5.2.3",
+    "node-sass": "^4.12.0",
+    "rollup": "^1.19.4",
+    "rollup-plugin-babel": "^4.3.3",
+    "eslint-plugin-chai-expect": "^2.0.1",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "eslint-plugin-mocha": "^6.0.0",
+    "eslint-plugin-node": ">=9.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "eslint-plugin-promise": ">=4.2.1",
+    "rollup-plugin-scss": "^1.0.2",
+    "eslint-plugin-standard": ">=4.0.0",
+    "rollup-plugin-terser": "^5.1.1",
+    "rollup-plugin-vue2": "^0.8.1",
+    "sass-loader": "^7.2.0",
+    "stylelint": "^10.1.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-processor-arbitrary-tags": "^0.1.0",
+    "vue": "^2.6.10",
+    "vuepress": "^1.0.3"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.10"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateuszRybczonek/vue-slick-popover"
+  },
+  "bugs": {
+    "url": "https://github.com/mateuszRybczonek/vue-slick-popover/issues"
+  },
+  "homepage": "https://github.com/mateuszRybczonek/vue-slick-popover#readme",
+  "license": "MIT",
+  "browserslist": [
+    "last 2 versions"
+  ]
 }

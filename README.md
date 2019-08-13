@@ -1,39 +1,105 @@
 # vue-slick-popover
 
-## Project setup
-```
-npm install
+> Popover component using popper.js for Vue.js apps
+
+## Installation
+
+```bash
+npm install vue-slick-popover
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+## Usage
+
+https://codesandbox.io/s/vue-slick-popover-demo-l94h5
+
+```html
+<template>
+  <div id="app">
+    <img ref="popoverReference" width="20%" src="./assets/logo.png" @click="openPopover">
+    
+    <VueSlickPopover
+      v-if="isPopoverVisible"
+      :popover-options="popoverOptions"
+      @closePopover="closePopover"
+    >
+      <VueSlickPopoverContent>
+        <p @closePopover="closePopover">Content</p>
+      </VueSlickPopoverContent>
+    </VueSlickPopover>
+  </div>
+</template>
 ```
 
-### Compiles and minifies for production
-```
-npm run build
+```js
+import Vue from "vue"
+import { VueSlickPopover, VueSlickPopoverContent } from "vue-slick-popover"
+import "vue-slick-popover/dist/vue-slick-popover.css"
+
+export default {
+    components: {
+        VueSlickPopover,
+        VueSlickPopoverContent
+    },
+    
+    data() {
+        return {
+          isPopoverVisible: false,
+          popoverOptions: {
+            animation: "scale-fade",
+            popoverReference: null,
+            placement: "top",
+            offset: "0,0"
+          }
+        }
+      },
+    
+      mounted() {
+        this.popoverOptions.popoverReference = this.$refs.popoverReference
+      },
+    
+      methods: {
+        closePopover() {
+          this.isPopoverVisible = false
+        },
+    
+        openPopover() {
+          this.isPopoverVisible = true
+        }
+      }
+}
 ```
 
-### Run your tests
-```
-npm run test
+## Development
+
+### Launch visual tests
+
+```bash
+npm run watch
 ```
 
-### Lints and fixes files
-```
-npm run lint
+### Build
+
+Bundle the js and css of to the `dist` folder:
+
+```bash
+npm build
 ```
 
-### Run your end-to-end tests
-```
-npm run test:e2e
+## Publishing
+
+The `prepare` hook will ensure dist files are created before publishing. This
+way you don't need to commit them in your repository.
+
+```bash
+# Bump the version first
+# It'll also commit it and create a tag
+npm version
+# Push the bumped package and tags
+git push --follow-tags
+# Ship it 🚀
+npm publish
 ```
 
-### Run your unit tests
-```
-npm run test:unit
-```
+## License
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[MIT](http://opensource.org/licenses/MIT)
