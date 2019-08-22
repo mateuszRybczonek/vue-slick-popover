@@ -4,7 +4,7 @@ module.exports = {
     sidebar: [
       {
         collapsable: false,
-        children: ["/docs/VueSlickPopover/"]
+        children: ["/docs/"]
       }
     ]
   }

@@ -1,6 +1,6 @@
 {
   "name": "vue-slick-popover",
-  "version": "0.0.3",
+  "version": "0.1.1",
   "description": "Popover component for Vue.js apps",
   "author": "Mateusz Rybczonek <m.rybczonek@gmail.com>",
   "main": "dist/vue-slick-popover.common.js",

@@ -4,7 +4,7 @@
 
 ## Installation
 
-```js
+```bash
 npm install vue-slick-popover
 ````
 
@@ -25,6 +25,12 @@ export default {
 ```
 
 ### 2. Use component
+To use the component you need to:
+1. Create a trigger element that will be responsible for showing the popover (that can be anything).
+2. Render `VueSlickPopover` component using `v-if` directive responsible for showing an hiding the popover.
+3. Pass `popover-options` property to the `VueSlickPopover` with your options.
+4. Pass any content into the default slot exposed by the `VueSlickPopover` component (that can be anything).
+
 ```html
 <template>
   <div>
@@ -74,11 +80,22 @@ methods: {
 }
 ```
 
-### 3. Demo
+## Example usage
+
+[Simple usage](https://codesandbox.io/s/vue-slick-popover-demo-l94h5)
+
+[Dropdown menu](https://codesandbox.io/s/vue-slick-popover-demo-dropdown-menu-ft9ft
+)
+
+[Temporary form](https://codesandbox.io/s/vue-slick-popover-temporary-form-3q1be
+)
+
+[Onboarding](https://codesandbox.io/s/vue-slick-popover-demo-onboarding-6or57
+)
+
+## Interactive demo
 
 <DemoVueSlickPopover />
-
-[Sandbox demo](https://codesandbox.io/s/vue-slick-popover-demo-l94h5)
 
 ## Listeners
 

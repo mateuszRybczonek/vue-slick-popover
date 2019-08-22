@@ -8,9 +8,23 @@
 npm install vue-slick-popover
 ```
 
-## Usage
+## Documentation
+https://vue-slick-popover.netlify.com/docs
 
-https://codesandbox.io/s/vue-slick-popover-demo-l94h5
+## Demos
+
+[Simple usage](https://codesandbox.io/s/vue-slick-popover-demo-l94h5)
+
+[Dropdown menu](https://codesandbox.io/s/vue-slick-popover-demo-dropdown-menu-ft9ft
+)
+
+[Temporary form](https://codesandbox.io/s/vue-slick-popover-temporary-form-3q1be
+)
+
+[Onboarding](https://codesandbox.io/s/vue-slick-popover-demo-onboarding-6or57
+)
+
+## Usage
 
 ```html
 <template>
