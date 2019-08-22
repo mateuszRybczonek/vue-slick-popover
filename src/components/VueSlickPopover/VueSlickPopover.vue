@@ -17,7 +17,7 @@
 
 <script>
 import Popper from "popper.js";
-import velocity from "velocity-animate";
+import anime from "animejs/lib/anime.es.js";
 
 const QUICK_ANIMATION_DURATION = 100;
 const DEFAULT_ANIMATION_DURATION = 300;
@@ -31,6 +31,11 @@ export default {
     popoverOptions: {
       type: Object,
       required: true
+    },
+
+    animationDuration: {
+      type: [Number, String],
+      default: DEFAULT_ANIMATION_DURATION
     }
   },
 
@@ -55,11 +60,11 @@ export default {
 
         switch (popoverOptions.animation) {
           case "fade":
-            velocity(
-              popoverContentNode,
-              { opacity: [1, 0] },
-              { duration: QUICK_ANIMATION_DURATION }
-            );
+            anime({
+              targets: popoverContentNode,
+              opacity: [0, 1],
+              duration: this.animationDuration
+            });
             break;
 
           case "scale-fade":
@@ -101,38 +106,39 @@ export default {
                 arrowOffsetLeft = popperArrowOffset.left + ARROW_WIDTH / 2;
               }
 
-              velocity(
-                popoverContentNode,
-                {
-                  opacity: [0.9, 0],
-                  scaleX: [1.1, 0.2],
-                  scaleY: [1.1, 0.2],
-                  top: [finalTopPosition, finalTopPosition],
-                  left: [finalLeftPosition, initialLeftPosition],
-                  transformOriginX: [arrowOffsetLeft, arrowOffsetLeft],
-                  transformOriginY: [arrowOffsetTop, arrowOffsetTop]
-                },
-                { duration: DEFAULT_ANIMATION_DURATION * 0.75 }
-              );
+              const timeline = anime.timeline({
+                easing: "easeOutExpo",
+                duration: this.animationDuration
+              });
 
-              velocity(
-                popoverContentNode,
-                {
-                  opacity: [1, 0.9],
-                  scaleX: [1, 1.1],
-                  scaleY: [1, 1.1],
-                  top: [finalTopPosition, finalTopPosition],
-                  left: [finalLeftPosition, finalLeftPosition],
-                  transformOriginX: [arrowOffsetLeft, arrowOffsetLeft],
-                  transformOriginY: [arrowOffsetTop, arrowOffsetTop]
-                },
-                { duration: DEFAULT_ANIMATION_DURATION * 0.25 }
-              );
+              timeline.add({
+                targets: popoverContentNode,
+                opacity: [0, 0.9],
+                scaleX: [0.2, 1.1],
+                scaleY: [0.2, 1.1],
+                transformOrigin: [
+                  `${arrowOffsetLeft}px ${arrowOffsetTop}px`,
+                  `${arrowOffsetLeft}px ${arrowOffsetTop}px`
+                ],
+                duration: this.animationDuration * 0.75
+              });
+
+              timeline.add({
+                targets: popoverContentNode,
+                opacity: [0.9, 1],
+                scaleX: [1.1, 1],
+                scaleY: [1.1, 1],
+                transformOrigin: [
+                  `${arrowOffsetLeft}px ${arrowOffsetTop}px`,
+                  `${arrowOffsetLeft}px ${arrowOffsetTop}px`
+                ],
+                duration: this.animationDuration * 0.25
+              });
             });
             break;
 
           default:
-            this.$refs.popoverContent.style.opacity = 1;
+            popoverContentNode.style.opacity = 1;
             break;
         }
       }
@@ -197,11 +203,11 @@ export default {
     },
 
     animateOutPopover() {
-      velocity(
-        this.$refs.vueSlickPopoverContent,
-        { opacity: 0 },
-        { duration: QUICK_ANIMATION_DURATION }
-      );
+      anime({
+        targets: this.$refs.vueSlickPopoverContent,
+        opacity: 0,
+        duration: QUICK_ANIMATION_DURATION
+      });
     },
 
     updateOverlayPosition() {
@@ -231,7 +237,7 @@ export default {
     top: 0;
     left: 0;
     z-index: 40;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
   }
 }
