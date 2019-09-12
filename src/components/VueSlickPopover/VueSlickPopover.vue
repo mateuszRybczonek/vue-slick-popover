@@ -173,7 +173,7 @@ export default {
       }
 
       this.popperInstance = new Popper(
-        popoverReference,
+        popoverReference.$el || popoverReference,
         this.$refs.vueSlickPopoverContent,
         {
           placement,
